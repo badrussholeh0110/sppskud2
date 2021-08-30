@@ -17,6 +17,7 @@ urlpatterns = [
     path('Tpeternak/',views.Tpeternak, name='Tpeternak'),
     path('Upeternak/<str:pk>',views.Upeternak, name='Upeternak'),
     path('Hpeternak/<str:pk>',views.Hpeternak, name='Hpeternak'),
+    path('peternakunit/<str:pk>',views.peternakunit, name='peternakunit'),
 
     path('harga/',views.harga, name='harga'),
     path('Tharga/',views.Tharga, name='Tharga'),

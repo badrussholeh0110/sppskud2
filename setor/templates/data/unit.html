@@ -41,6 +41,7 @@
                                     </div>
                                 </div> -->
                                 <div class="card-body">
+                                    <a href="{% url 'cetak' %}" class="btn btn-outline-info">cetak</a>
                                     <a href="{% url 'Tunit' %}" class="right btn btn-outline-info">Tambah Data</a><br><br>
                                     <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                                         <thead>
@@ -55,7 +56,7 @@
                                             {% for unit in unit %}
                                             <tr>
                                                 <td>{{forloop.counter}}</td>
-                                                <td>{{unit.namaunit}}</td>
+                                                <td><a href="{% url 'peternakunit' unit.id %}">{{unit.namaunit}}</a></td>
                                                 <td>{{unit.alamatunit}}</td>
                                                 <td><a href="{% url 'Uunit' unit.id %}" class="btn btn-success">Ubah</a> |
                                                     <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#hapus-{{ unit.id }}">Hapus</button>
@@ -85,7 +86,6 @@
                                 </div>
                                 <!-- /.card-body -->
                                 <div class="card-footer">
-                                    Footer
                                 </div>
                                 <!-- /.card-footer-->
                             </div>

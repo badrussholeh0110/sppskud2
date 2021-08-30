@@ -132,17 +132,16 @@ def pdfpeter(request, pk):
 @pilihan_login
 def home(request):
     grafik = Setoran.objects.values('namaunit__namaunit').annotate(jumlahsetoran_count=Sum('jumlahsetoran'))
-    peternak = Peternak.objects.all()
+    peternak = Peternak.objects.all().count()
     setoran = Setoran.objects.all().aggregate(Sum('jumlahsetoran'))
-    total = peternak.count()
-    unit = Unit.objects.all()
-    total = unit.count()
-    petugas = Petugas.objects.all()
-    total = petugas.count()
+    unit = Unit.objects.all().count()
+    petugas = Petugas.objects.all().count()
     # print (grafik)
     context = {
-        'total': total,
-        'setor': setoran,
+        'peternak': peternak,
+        'petugas': petugas,
+        'unit': unit,
+        'setoran': setoran,
         'grafik': grafik
     }
     return render(request, 'data/home.html', context) 
@@ -472,3 +471,11 @@ def lihathasil(request, pk):
     }
     return render(request, 'data/setoran2a.html', context)
 
+def peternakunit(request, pk):
+    unit = Unit.objects.get(id=pk)
+    peternak = Peternak.objects.filter(namaunit=unit)
+    context = {
+        'judul': 'Halaman Peternak',
+        'Peternak': peternak,
+    }
+    return render(request, 'data/peternakunit.html', context)
